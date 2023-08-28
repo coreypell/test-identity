@@ -1,5 +1,7 @@
 Welcome to my Keycloak stack for local development and testing!
+
 Please Read the instructions below to deploy the stack with docker-compose!
+
 **NOTE: You will need docker/docker-desktop installed on your system before you attempt this**
 
 Change directory to "test-identity" and build out your containers
