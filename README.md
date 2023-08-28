@@ -6,6 +6,14 @@ Please Read the instructions below to deploy the stack with docker-compose!
 
 Create working directory, clone the repo, and build your images
 
+- **Windows(PowerShell)**
+  -  mkdir test-identity; cd test-identity
+  -  git clone https://github.com/coreypell/test-identity.git .
+  -  docker build -t test-apache:latest .\test-apache
+  -  docker build -t test-keycloak:latest .\test-keycloak
+  -  docker build -t test-postgres:latest .\test-postgres
+
+- **Linux/Mac**
   -  mkdir test-identity && cd test-identity
   -  git clone https://github.com/coreypell/test-identity.git .
   -  docker build -t test-apache:latest ./test-apache
