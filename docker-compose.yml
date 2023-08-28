@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  keycloak:
+    image: test-keycloak:latest
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - apache
+    networks:
+      - keycloak_network
+
+  postgres:
+    image: test-postgres:latest
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - keycloak_network
+
+  apache:
+    image: test-apache:latest
+    ports:
+      - "443:443"
+    networks:
+      - keycloak_network
+
+
+networks:
+  keycloak_network:
+
+volumes:
+  postgres_data:
