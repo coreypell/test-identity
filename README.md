@@ -1,4 +1,4 @@
-**Welcome to my Keycloak stack for local development and testing!**
+# Welcome to my Keycloak stack for local development and testing!
 
 Please Read the instructions below to deploy the stack with docker-compose!
 
