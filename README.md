@@ -10,16 +10,10 @@ ________________________________________________________________________________
 - ***Windows(PowerShell)***
   -  mkdir test-identity; cd test-identity
   -  git clone https://github.com/coreypell/test-identity.git .
-  -  docker build -t test-apache:latest .\test-apache
-  -  docker build -t test-keycloak:latest .\test-keycloak
-  -  docker build -t test-postgres:latest .\test-postgres
 
 - ***Linux/Mac***
   -  mkdir test-identity && cd test-identity
   -  git clone https://github.com/coreypell/test-identity.git .
-  -  docker build -t test-apache:latest ./test-apache
-  -  docker build -t test-keycloak:latest ./test-keycloak
-  -  docker build -t test-postgres:latest ./test-postgres
 
 __________________________________________________________________________________________________
 
@@ -29,11 +23,17 @@ While you are still in the "test-identity" directory run:
 
   -  docker-compose up -d
 
+The Docker Compose will build the images for you if this is your first time.
+This will take some time, so please allow the process to complete!
+
 From here you can navigate to https://localhost/auth to get to Keycloak.
 
 _________________________________________________________________________________________________
 
 Clean up!
-  -  docker-compose down
+  -  docker-compose down -v
+
+The "-v" option deletes named volumes for a full cleanup!
+If you wish to retain the named volumes, simply remove the "-v" option.
 
 **Enjoy!**

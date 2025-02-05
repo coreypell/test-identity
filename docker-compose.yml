@@ -2,6 +2,9 @@ version: '3'
 
 services:
   keycloak:
+    build:
+      context: ./test-keycloak
+      dockerfile: Dockerfile
     image: test-keycloak:latest
     command: ["start", "--optimized"]
     environment:
@@ -11,27 +14,38 @@ services:
       - KC_DB_PASSWORD=keycloak
       - KC_HOSTNAME=localhost
       - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=changeme #change to desired password
       - KC_HTTP_ENABLE=true
       - KC_PROXY=edge
-      - KEYCLOAK_ADMIN_PASSWORD=admin=value
     ports:
       - "8080:8080"
     depends_on:
-      - postgres
-      - apache
+      postgres:
+        condition: service_healthy
     networks:
       - keycloak_network
 
   postgres:
+    build:
+      context: ./test-postgres
+      dockerfile: Dockerfile
     image: test-postgres:latest
     ports:
       - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - keycloak_network
 
   apache:
+    build:
+      context: ./test-apache
+      dockerfile: Dockerfile
     image: test-apache:latest
     ports:
       - "443:443"
