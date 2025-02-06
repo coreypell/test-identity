@@ -5,7 +5,6 @@ services:
     build:
       context: ./test-keycloak
       dockerfile: Dockerfile
-    image: test-keycloak:latest
     command: ["start", "--optimized"]
     environment:
       - KC_FEATURES_DISABLED=admin2
@@ -29,7 +28,6 @@ services:
     build:
       context: ./test-postgres
       dockerfile: Dockerfile
-    image: test-postgres:latest
     ports:
       - "5432:5432"
     healthcheck:
@@ -46,7 +44,6 @@ services:
     build:
       context: ./test-apache
       dockerfile: Dockerfile
-    image: test-apache:latest
     ports:
       - "443:443"
     networks:
